@@ -10,4 +10,10 @@ class Task {
     required this.description,
     required this.done,
   });
+
+  Task.fromJson(Map<String, dynamic> json)
+      : id = json['id'].toString(),
+        title = json['title'],
+        description = json['description'],
+        done = json['done'];
 }

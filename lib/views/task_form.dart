@@ -7,12 +7,14 @@ class TaskForm extends StatelessWidget {
   TaskForm({super.key});
   final form = GlobalKey<FormState>();
   final Map<String, String> formData = {};
+  var newTask = true;
 
   void _loadFormData(Task? task) {
     if (task != null) {
       formData['id'] = task.id;
       formData['title'] = task.title;
       formData['description'] = task.description;
+      newTask = false;
     }
   }
 
@@ -35,13 +37,13 @@ class TaskForm extends StatelessWidget {
                 if (isValid) {
                   state.save();
                   Provider.of<Tasks>(context, listen: false).put(
-                    Task(
-                      title: formData['title']!,
-                      description: formData['description']!,
-                      done: false,
-                      id: formData.containsKey('id') ? formData['id']! : '',
-                    ),
-                  );
+                      Task(
+                        title: formData['title']!,
+                        description: formData['description']!,
+                        done: false,
+                        id: formData.containsKey('id') ? formData['id']! : '',
+                      ),
+                      newTask);
                   Navigator.of(context).pop();
                 }
               },

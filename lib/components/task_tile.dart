@@ -15,12 +15,14 @@ class TaskTile extends StatelessWidget {
       leading: Checkbox(
         value: task.done,
         onChanged: (value) {
-          Provider.of<Tasks>(context, listen: false).put(Task(
-            id: task.id,
-            title: task.title,
-            done: value!,
-            description: task.description,
-          ));
+          Provider.of<Tasks>(context, listen: false).put(
+              Task(
+                id: task.id,
+                title: task.title,
+                done: value!,
+                description: task.description,
+              ),
+              false);
         },
       ),
       title: Text(task.title),
